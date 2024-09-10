@@ -145,7 +145,7 @@
     <div class="text" style="bottom: 10px; left: 0px; width: 100%; font-size: 4rem;">2025</div>
   </div>
   <div class="name" style="margin-top: 330px;">
-    <div>정준영  김가우</div>
+    <div id="namediv"></div>
   </div>
   <div class="main_img">
     <img src="/img/temp_main.JPG" style="width: 100%; height: auto;">
@@ -154,10 +154,20 @@
   <div style="height: 200px;"></div>
 
   <script>
+    // with half of chance, 
+    // change the name to '정준영 김가우' or '김가우 정준영'
+    function nameInit(){
+      var name = document.getElementById('namediv');
+      if(Math.random()>0.5){
+        name.innerHTML = '김가우  정준영';
+      }else{
+        name.innerHTML = '정준영  김가우';
+      }
+    }
+    setTimeout(nameInit, 20);
     function scrollAdjust(){
       var header = document.querySelector('.header');
       var scroll = window.scrollY;
-      console.log(scroll);
       // get the height
       var height = header.offsetHeight;
       var percentage = scroll / height;
