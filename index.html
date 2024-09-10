@@ -155,9 +155,10 @@
   <div style="height: 100px;"></div>
   <div id="marriage_statement" style="font-size: 4rem">결혼합니다</div>
 
-  <div id="timeplace_info1" style="font-size: 2rem; display: block; text-align: center; position: relative;">
-    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%;">03. 23. 2025 / 일요일 / 오전 11시</div>
-    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 3rem;">서울대학교 교수회관</div>
+  <div id="timeplace_info1" style="font-size: 1.5rem; display: block; text-align: center; position: relative;">
+    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%;">03. 23. 2025 / 일요일</div>
+    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 3rem;">오전 11시</div>
+    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 6rem;">서울대학교 교수회관</div>
   </div>
   
   <div style="height: 1000px;"></div>
@@ -212,6 +213,8 @@
       }else if(scroll >= pixel3end){
         document.getElementById('timeplace_info1').style.color = `rgba(0, 0, 0, 1)`;
         document.getElementById('timeplace_info1').style.letterSpacing = `0.1rem`;
+      }else if(scroll<pixel3start){
+        document.getElementById('timeplace_info1').style.color = `rgba(0, 0, 0, 0)`;
       }
       // if(height>)
     }
