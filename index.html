@@ -56,7 +56,7 @@
       background-size: 200% 200%;
       animation: gradient 15s linear infinite;
     }
-    @media (prefers-reduced-motion: no-preference) {
+    /* @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: scroll()) {
         .header {
           animation: enlarge ease-in both, ensmall linear both;
@@ -87,7 +87,7 @@
         color: rgba(255, 255, 255, 0);
       }
     }
-    
+     */
     @keyframes gradient {
       0% {
         background-position: 0% 50%;
@@ -133,7 +133,7 @@
 }
   </style>
 </head>
-<body>
+<body onScroll="scrollAdjust()">
   <div style="height: 50px;"></div>
   <div class="header">
     <div class="header-background"></div>
@@ -153,5 +153,26 @@
   
   <div style="height: 200px;"></div>
 
+  <script>
+    function scrollAdjust(){
+      var header = document.querySelector('.header');
+      var scroll = window.scrollY;
+      console.log(scroll);
+      // get the height
+      var height = header.offsetHeight;
+      var percentage = scroll / height;
+      if(percentage>0.8){
+        header.style.color = `rgba(255, 255, 255, 0)`;
+        header.style.transform = `scale(7)`;
+      }else{
+        header.style.color = `rgba(255, 255, 255, ${(1-percentage*1.25)})`;
+        if(1+percentage*7.5<1){
+          header.style.transform = `scale(1)`;
+        }else{
+          header.style.transform = `scale(${1+percentage*7.5})`;
+        }
+      }
+    }
+  </script>
 </body>
 </html>
