@@ -23,6 +23,7 @@
     }
     /* add background change animation in header between two colors */
     .header {
+      z-index: -1;
       color: white;
       padding: 20px;
       font-size: 4rem;
@@ -34,7 +35,8 @@
       margin: auto;
       overflow: hidden;
       font-weight: bold;
-      position: relative;
+      position: fixed;
+      margin-left: calc(50% - 170px);
     }
     .header div{
       font-size: 7rem;
@@ -57,7 +59,7 @@
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: scroll()) {
         .header {
-          animation: enlarge linear both, gradient 15s linear infinite;
+          animation: enlarge ease-in both, ensmall linear both;
           animation-timeline: scroll();
         } 
       }
@@ -67,12 +69,25 @@
         transform: scale(1);
       }
       20% {
-        transform: scale(5);
+        transform: scale(7);
       }
       100% {
-        transform: scale(5);
+        transform: scale(7);
       }
     }
+
+    @keyframes ensmall {
+      0% {
+        color: rgba(255, 255, 255, 1);
+      }
+      20% {
+        color: rgba(255, 255, 255, 0);
+      }
+      100% {
+        color: rgba(255, 255, 255, 0);
+      }
+    }
+    
     @keyframes gradient {
       0% {
         background-position: 0% 50%;
@@ -84,6 +99,7 @@
         background-position: 0% 50%;
       }
     }
+    
 
 
 
@@ -122,16 +138,20 @@
   <div class="header">
     <div class="header-background"></div>
     <div class="wave"></div>
-    <div style="top: 10px; left: 60px;">03</div>
+    <div class="text" style="top: 10px; left: 60px;">03</div>
     <span style="display: none;">block</span>
-    <div style="top: 110px; right: 60px;">23</div>
+    <div class="text" style="top: 110px; right: 60px;">23</div>
     <span style="display: none;">block</span>
-    <div style="bottom: 10px; left: 0px; width: 100%; font-size: 4rem;">2025</div>
+    <div class="text" style="bottom: 10px; left: 0px; width: 100%; font-size: 4rem;">2025</div>
   </div>
-  <div class="name">
+  <div class="name" style="margin-top: 330px;">
     <div>정준영  김가우</div>
   </div>
+  <div class="main_img">
+    <img src="/img/temp_main.jpg" style="width: 100%; height: auto;">
+  </div>
   
+  <div style="height: 200px;"></div>
 
 </body>
 </html>
