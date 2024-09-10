@@ -13,6 +13,7 @@
     }
     body{
       margin: 0px;
+      overflow-x: hidden;
     }
     div {
       display: flex;
@@ -150,8 +151,17 @@
   <div class="main_img">
     <img src="/img/temp_main.JPG" style="width: 100%; height: auto;">
   </div>
+
+  <div style="height: 100px;"></div>
+  <div id="marriage_statement" style="font-size: 4rem">결혼합니다</div>
+
+  <div id="timeplace_info1" style="font-size: 2rem; display: block; text-align: center; position: relative;">
+    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%;">03. 23. 2025 / 일요일 / 오전 11시</div>
+    <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 3rem;">서울대학교 교수회관</div>
+  </div>
   
-  <div style="height: 200px;"></div>
+  <div style="height: 1000px;"></div>
+  
 
   <script>
     // with half of chance, 
@@ -171,17 +181,39 @@
       // get the height
       var height = header.offsetHeight;
       var percentage = scroll / height;
-      if(percentage>0.8){
+      
+      var pixel1end = 600;
+      console.log(height, pixel1end);
+      // first
+      if(scroll>pixel1end){
         header.style.color = `rgba(255, 255, 255, 0)`;
         header.style.transform = `scale(7)`;
       }else{
-        header.style.color = `rgba(255, 255, 255, ${(1-percentage*1.25)})`;
-        if(1+percentage*7.5<1){
+        header.style.color = `rgba(255, 255, 255, ${(1-scroll/pixel1end)})`;
+        if(1+scroll/pixel1end*6<1){
           header.style.transform = `scale(1)`;
         }else{
-          header.style.transform = `scale(${1+percentage*7.5})`;
+          header.style.transform = `scale(${1+scroll/pixel1end*6})`;
         }
       }
+
+      var pixel2start = 400;
+      var pixel2end = 750;
+      if(scroll>pixel2start){
+        document.getElementById('marriage_statement').style.color = `rgba(0, 0, 0, ${(scroll-pixel2start)/(pixel2end-pixel2start)})`;
+      }
+
+      var pixel3start = 500;
+      var pixel3end = 850;
+      if(scroll>pixel3start && scroll<pixel3end){
+        document.getElementById('timeplace_info1').style.color = `rgba(0, 0, 0, ${(scroll-pixel3start)/(pixel3end-pixel3start)})`;
+        // adjust the font spacing
+        document.getElementById('timeplace_info1').style.letterSpacing = `${2*(1-(scroll-pixel3start)/(pixel3end-pixel3start))+ 0.1}rem`;
+      }else if(scroll >= pixel3end){
+        document.getElementById('timeplace_info1').style.color = `rgba(0, 0, 0, 1)`;
+        document.getElementById('timeplace_info1').style.letterSpacing = `0.1rem`;
+      }
+      // if(height>)
     }
   </script>
 </body>
