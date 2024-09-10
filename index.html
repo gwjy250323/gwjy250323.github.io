@@ -25,7 +25,6 @@
     .header {
       background: linear-gradient(90deg, #acd3bf, #b9a0cd);
       background-size: 200% 200%;
-      animation: gradient 15s linear infinite;
       color: white;
       padding: 20px;
       font-size: 4rem;
@@ -49,7 +48,7 @@
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: scroll()) {
         .header {
-          animation: enlarge linear both;
+          animation: enlarge linear both, gradient 15s linear infinite;
           animation-timeline: scroll();
         } 
       }
