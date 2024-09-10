@@ -189,8 +189,12 @@
       if(scroll>pixel1end){
         header.style.color = `rgba(255, 255, 255, 0)`;
         header.style.transform = `scale(7)`;
-      }else{
-        header.style.color = `rgba(255, 255, 255, ${(1-scroll/pixel1end)})`;
+      }else if(scroll<=pixel1end){
+        if(1-scroll/pixel1end>0){
+          header.style.color = `rgba(255, 255, 255, ${(1-scroll/pixel1end)})`;
+        }else{
+          header.style.color = `rgba(255, 255, 255, 0)`;
+        }
         if(1+scroll/pixel1end*6<1){
           header.style.transform = `scale(1)`;
         }else{
