@@ -171,6 +171,48 @@
   user-select: none;
 }
 
+.calendar-top{
+  background-color: #2691b470;
+  color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  display: flex;
+}
+
+.calendar-body{
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+  border: none;
+  background-color: #2691b470;
+}
+
+.calendar-body td{
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  
+}
+.calendar-body td:first-child{
+  /* color: #D93030; */
+  color: #C41E3A;
+}
+.calendar-wed-date{
+  color: white !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23C41E3A90' d='M50 30 C35 15, 10 20, 10 40 C10 60, 30 70, 50 90 C70 70, 90 60, 90 40 C90 20, 65 15, 50 30 Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  /* width: 100px;
+  height: 100px; */
+  /* resize: both; */
+  overflow: auto;
+
+}
 
   </style>
 </head>
@@ -232,6 +274,77 @@
       <div class="callbutton" onclick="toSms('10-3543-0358')"><i class="fa fa-comments" style="font-size:30px"></i></div>
     </div>
   </div>
+
+  <!-- calendar -->
+   <br/>
+   <div style="display: block" class="calendar">
+    <div class="calendar-top">
+      <div style="font-size: 1.2rem">3 March</div>
+      <div style="flex: 1"></div>
+      <div style="font-size: 0.8rem">Sun 11:00 am</div>
+    </div>
+    <table class="calendar-body">
+      <thead>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>10</td>
+          <td>11</td>
+          <td>12</td>
+          <td>13</td>
+          <td>14</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+          <td>19</td>
+          <td>20</td>
+          <td>21</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td class="calendar-wed-date heart-cell">23</td>
+          <td>24</td>
+          <td>25</td>
+          <td>26</td>
+          <td>27</td>
+          <td>28</td>
+          <td>29</td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td>31</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+   </div>
   
   <div style="height: 200px;"></div>
   
