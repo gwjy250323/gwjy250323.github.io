@@ -222,9 +222,15 @@
   </div>
   <br/>
   <div class="callbox" style="display: block;">
-    <div>신랑에게 연락 <div class="callbutton" onclick="toCall('10-8563-9208')"><i class="fa fa-phone" style="font-size:30px"></i></div></div>
+    <div>신랑에게 연락 
+      <div class="callbutton" onclick="toCall('10-8563-9208')"><i class="fa fa-phone" style="font-size:30px"></i></div>
+      <div class="callbutton" onclick="toSms('10-8563-9208')"><i class="fa fa-comments" style="font-size:30px"></i></div>
+    </div>
     <br/>
-    <div>신부에게 연락 <div class="callbutton" onclick="toCall('10-3543-0358')"><i class="fa fa-phone" style="font-size:30px"></i></div></div>
+    <div>신부에게 연락 
+      <div class="callbutton" onclick="toCall('10-3543-0358')"><i class="fa fa-phone" style="font-size:30px"></i></div>
+      <div class="callbutton" onclick="toSms('10-3543-0358')"><i class="fa fa-comments" style="font-size:30px"></i></div>
+    </div>
   </div>
   
   <div style="height: 200px;"></div>
@@ -291,6 +297,9 @@
 
     function toCall(number){
       window.location.href = `tel:+82${number}`;
+    }
+    function toSms(number){
+      window.location.href = `sms:+82${number}`;
     }
   </script>
 </body>
