@@ -31,6 +31,7 @@
       align-items: center;
       font-family: 'GowunBatang-Regular';
       
+      
     }
     /* add background change animation in header between two colors */
     .header {
@@ -146,7 +147,7 @@
 .callbox{
   /* rainbow animation in background */
   background-color: #ffffff70;
-
+  display: block;
   border-radius: 20px;
   margin-left: 20px;
   margin-right: 20px;
@@ -232,11 +233,11 @@
   <div class="name" style="margin-top: 330px;">
     <div id="namediv"></div>
   </div>
-  <div class="main_img">
-    <img src="/img/temp_main.JPG" style="width: 100%; height: auto;">
+  <div class="main_img" >
+    <img src="/img/temp_main.JPG" style="width: 100%; height: auto; max-width: 600px;">
   </div>
 
-  <div style="height: 100px;"></div>
+  <div style="height: 20px;"></div>
   <div id="marriage_statement" style="font-size: 4rem; color: rgba(0,0,0,0)">결혼합니다</div>
 
   <div id="timeplace_info1" style="font-size: 1.5rem; display: block; text-align: center; position: relative; overflow-x: hidden; height: 9rem; width: 100%;">
@@ -265,21 +266,23 @@
     <div>김상훈 · 김지희의 장녀 가우</div>
   </div>
   <br/>
-  <div class="callbox" style="display: block;">
-    <div>신랑에게 연락 
-      <div class="callbutton" onclick="toCall('10-8563-9208')"><i class="fa fa-phone" style="font-size:30px"></i></div>
-      <div class="callbutton" onclick="toSms('10-8563-9208')"><i class="fa fa-comments" style="font-size:30px"></i></div>
-    </div>
-    <br/>
-    <div>신부에게 연락 
-      <div class="callbutton" onclick="toCall('10-3543-0358')"><i class="fa fa-phone" style="font-size:30px"></i></div>
-      <div class="callbutton" onclick="toSms('10-3543-0358')"><i class="fa fa-comments" style="font-size:30px"></i></div>
+  <div style="display: block; margin: auto;  max-width: 600px;">
+    <div class="callbox" >
+      <div>신랑에게 연락 
+        <div class="callbutton" onclick="toCall('10-8563-9208')"><i class="fa fa-phone" style="font-size:30px"></i></div>
+        <div class="callbutton" onclick="toSms('10-8563-9208')"><i class="fa fa-comments" style="font-size:30px"></i></div>
+      </div>
+      <br/>
+      <div>신부에게 연락 
+        <div class="callbutton" onclick="toCall('10-3543-0358')"><i class="fa fa-phone" style="font-size:30px"></i></div>
+        <div class="callbutton" onclick="toSms('10-3543-0358')"><i class="fa fa-comments" style="font-size:30px"></i></div>
+      </div>
     </div>
   </div>
 
   <!-- calendar -->
    <br/>
-   <div style="display: block" class="calendar">
+   <div style="display: block; margin: auto; max-width: 600px;" class="calendar">
     <div class="calendar-top">
       <div style="font-size: 1.2rem">3 March</div>
       <div style="flex: 1"></div>
