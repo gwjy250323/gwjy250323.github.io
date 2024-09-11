@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>GWJY</title>
   <style>
     * { margin: 0; padding: 0; }
@@ -11,6 +12,14 @@
         font-weight: normal;
         font-style: normal;
     }
+
+    @font-face {
+        font-family: 'TheJamsil5Regular';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+    }
+    
     body{
       margin: 0px;
       overflow-x: hidden;
@@ -133,6 +142,36 @@
 .name{
   font-size: 4rem;
 }
+
+.callbox{
+  /* rainbow animation in background */
+  background-color: #ffffff70;
+
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  /* color: white; */
+}
+
+.callbox div{
+  font-family: 'TheJamsil5Regular';
+  font-weight: 400;
+}
+
+.callbutton{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #7ac5d6;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  user-select: none;
+}
+
+
   </style>
 </head>
 <body onScroll="scrollAdjust()">
@@ -161,8 +200,34 @@
     <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 3rem;">오전 11시</div>
     <div style="overflow: hidden; position: absolute; width: 300%; left: -100%; top: 6rem;">서울대학교 교수회관</div>
   </div>
+
+  <div style="display: block; text-align: center;">
+    <p>상상을 현실로 만들어주는 준영이와</p>
+    <p>현실을 더 나은 현실로 가꿔주는 가우가 만나</p>
+    <p>서로의 무지개빛 꿈이 되어주기로 하였습니다.</p>
+    <br/>
+    <p>바다 위에서 부딪혀가는 수많은 파도</p>
+    <p>수면 위의 파열음은 당연한 것이지만</p>
+    <p>가우의 파도와 준영이의 파도는</p>
+    <p>서로를 닮아가는 세찬 물결로</p>
+    <p>포근한 무지개를 만들어 나갈 것입니다.</p>
+    <br/>
+    <p>두 파도가 만나는 2025년 3월 23일,</p>
+    <p>무지개가 뜰 언덕으로 귀하를 초대합니다.</p>
+  </div>
+  <br/>
+  <div style="display: block;">
+    <div>정진태 · 강진아의 장남 준영</div>
+    <div>김상훈 · 김지희의 장녀 가우</div>
+  </div>
+  <br/>
+  <div class="callbox" style="display: block;">
+    <div>신랑에게 연락 <div class="callbutton" onclick="toCall('010-8563-9208')"><i class="fa fa-phone" style="font-size:30px"></i></div></div>
+    <br/>
+    <div>신부에게 연락 <div class="callbutton" onclick="toCall('010-3543-0358')"><i class="fa fa-phone" style="font-size:30px"></i></div></div>
+  </div>
   
-  <div style="height: 1000px;"></div>
+  <div style="height: 200px;"></div>
   
 
   <script>
@@ -222,6 +287,10 @@
         document.getElementById('timeplace_info1').style.color = `rgba(0, 0, 0, 0)`;
       }
       // if(height>)
+    }
+
+    function toCall(number){
+      window.location.href = `tel:+82${number}`;
     }
   </script>
 </body>
