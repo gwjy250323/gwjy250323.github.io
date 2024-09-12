@@ -2,6 +2,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=912d1b999ce298be111677d73d480c17"></script>
   <title>GWJY</title>
   <style>
     * { margin: 0; padding: 0; }
@@ -219,6 +220,15 @@
 
 }
 
+#map{
+  margin-right: 20px;
+  margin-left: 20px; 
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  position: relative;
+  opacity: 0.75;
+}
+
   </style>
 </head>
 <body onScroll="scrollAdjust()">
@@ -283,6 +293,7 @@
   </div>
 
   <!-- calendar -->
+   <br/>
    <br/>
    <div style="display: block; margin: auto; max-width: 600px;" class="calendar">
     <div class="calendar-top">
@@ -352,6 +363,19 @@
       </tbody>
     </table>
    </div>
+   <br/>
+   <br/>
+   <div style="margin: auto; display: block; max-width: 600px; position:relative;">
+    <div style="font-size: 1.5rem; display: block; margin-left: 20px; margin-right: 20px;">서울대학교 교수회관</div>
+    <div style="font-size: 1rem; display: block; margin-left: 20px; margin-right: 20px;">서울특별시 관악구 관악로1 서울대학교 내 65동 교수회관</div>
+    <div style="font-size: .75rem; display: block; margin-left: 20px; margin-right: 20px;">Tel. 02-3285-2115~6</div>
+    <div class="callbutton" style="position: absolute; top:0; right: 20px;" onclick="toCall('2-3285-2116')"><i class="fa fa-phone" style="font-size:30px"></i></div>
+    <div style="height: 10px;"></div>
+    <div id="map"></div>
+
+   </div>
+
+   
   
   <div style="height: 100px;"></div>
   
@@ -368,6 +392,7 @@
       }
     }
     setTimeout(nameInit, 20);
+    setTimeout(loadMap, 20);
     function scrollAdjust(){
       var header = document.querySelector('.header');
       var scroll = window.scrollY;
@@ -420,6 +445,23 @@
     }
     function toSms(number){
       window.location.href = `sms:+82${number}`;
+    }
+    function loadMap(){
+      var pos = new kakao.maps.LatLng(37.4579, 126.953898);
+      var container = document.getElementById('map');
+      var options = {
+        center: pos,
+        level: 3,
+      };
+      // container.style.width = container.offsetWidth + 'px';
+      // container.style.height = container.offsetWidth * 9 / 16 + 'px';
+      var map = new kakao.maps.Map(container, options);
+      var marker = new kakao.maps.Marker({
+          position: pos,
+      });
+      marker.setMap(map);
+      map.panBy(1, 1);
+      map.panBy(-1, -1);
     }
   </script>
 </body>
