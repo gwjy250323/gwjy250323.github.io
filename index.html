@@ -520,19 +520,23 @@
 
     function kakaoNavi(){
       console.log(Kakao)
-      Kakao.Navi.start({
-        name: "서울대학교 교수회관",
-        x: 126.953898,
-        y: 37.4579,
-        coordType: 'wgs84',
-      });
+      if(navigator.userAgent.match(/android/i) || navigator.userAgent.match(/(iphone|ipod|ipad)/i)){
+        Kakao.Navi.start({
+          name: "서울대학교 교수회관",
+          x: 126.953898,
+          y: 37.4579,
+          coordType: 'wgs84',
+        });
+      }else{
+        window.location.href = 'https://map.kakao.com/link/to/서울대학교 교수회관,37.4579,126.953898';
+      }
     }
 
     function naverMap(){
       if(navigator.userAgent.match(/android/i)){
-        window.location.href = 'nmap://place?lat=37.4579&lng=126.953898&name=서울대학교 교수회관';
+        window.location.href = 'nmap://place?lat=37.4577&lng=126.9539&name=서울대학교교수회관';
       }else if(navigator.userAgent.match(/(iphone|ipod|ipad)/i)){
-        window.location.href = 'nmap://place?lat=37.4579&lng=126.953898&name=서울대학교 교수회관';
+        window.location.href = 'nmap://place?lat=37.4579&lng=126.9539&name=서울대학교교수회관';
       }else{
         window.location.href = 'https://naver.me/F6mboNxh';
       }
