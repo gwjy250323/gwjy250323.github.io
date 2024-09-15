@@ -406,7 +406,8 @@
         <div class="map_label">티맵</div>
       </div>
       <div class="map_logo_container">
-        <img src="img/kakaonav.svg" class="map_logo"/>
+
+        <img src="img/kakaonav.svg" class="map_logo" onclick="kakaoNavi()"/>
         <div class="map_label">카카오내비</div>
       </div>
       <div class="map_logo_container">
@@ -511,15 +512,13 @@
       map.panBy(-1, -1);
     }
 
-    function naverMap(){
-      // if the page is loaded on mobile, open the naver map app
-      // else, open the naver map website
-      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        window.location.href = 'nmap://place?lat=37.4579&lng=126.953898&name=서울대학교 교수회관&appname=http://gwjy250323.one/';
-
-      } else {
-        window.location.href = 'https://naver.me/F6mboNxh';
-      }
+    function kakaoNavi(){
+      kakao.Navi.start({
+        name: "서울대학교 교수회관",
+        x: 126.953898,
+        y: 37.4579,
+        coordType: 'wgs84',
+      });
     }
 
     function toURL(url){
