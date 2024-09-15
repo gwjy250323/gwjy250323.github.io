@@ -417,7 +417,7 @@
         <div class="map_label">카카오내비</div>
       </div>
       <div class="map_logo_container">
-        <img src="img/navermap.webp" class="map_logo" onclick="toURL('https://naver.me/F6mboNxh')"/>
+        <img src="img/navermap.webp" class="map_logo" onclick="naverMap()"/>
         <div class="map_label">네이버지도</div>
       </div>
       <div class="map_logo_container">
@@ -526,6 +526,16 @@
         y: 37.4579,
         coordType: 'wgs84',
       });
+    }
+
+    function naverMap(){
+      if(navigator.userAgent.match(/android/i)){
+        window.location.href = 'nmap://search?query=서울대학교 교수회관';
+      }else if(navigator.userAgent.match(/(iphone|ipod|ipad)/i)){
+        window.location.href = 'nmap://search?query=서울대학교 교수회관';
+      }else{
+        window.location.href = 'https://map.naver.com/v5/search/서울대학교 교수회관';
+      }
     }
 
     function toURL(url){
