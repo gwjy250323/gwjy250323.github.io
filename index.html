@@ -408,12 +408,12 @@
    <div style="margin: auto; display: block; max-width: 600px;">
     <div style="display: flex; margin-left: 20px; margin-right: 20px; justify-content: space-around;">
       <div class="map_logo_container">
-        <img src="img/tmap.svg" class="map_logo"/>
+        <img src="img/tmap.svg" class="map_logo" onclick="toURL('https://apis.openapi.sk.com/tmap/app/routes?appKey=HTHID0RRlY6K8WnPDkIhh9xvjoekUeNdatO2UNg8&name=서울대학교 교수회관&lon=126.953898&lat=37.4579')"/>
         <div class="map_label">티맵</div>
       </div>
       <div class="map_logo_container">
 
-        <img src="img/kakaonav.svg" class="map_logo" onclick="kakaoNavi()"/>
+        <img id="kakaonavi" src="img/kakaonav.svg" class="map_logo" onclick="kakaoNavi()"/>
         <div class="map_label">카카오내비</div>
       </div>
       <div class="map_logo_container">
