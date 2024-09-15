@@ -230,6 +230,28 @@
   opacity: 0.75;
 }
 
+.map_logo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  opacity: 0.75;
+  /* color filter to blue without pink */
+  filter: invert(0%) sepia(100%) saturate(150%) hue-rotate(200deg) brightness(100%) contrast(100%);
+}
+
+.map_logo_container{
+  max-width: 20%;
+  display: block;
+  margin: auto;
+}
+
+
+.map_label{
+  font-size: 0.8rem;
+  width: 100%;
+  font-family: 'TheJamsil5Regular';
+}
+
   </style>
 </head>
 <body onScroll="scrollAdjust()">
@@ -370,10 +392,34 @@
     <div style="font-size: 1.5rem; display: block; margin-left: 20px; margin-right: 20px;">서울대학교 교수회관</div>
     <div style="font-size: 1rem; display: block; margin-left: 20px; margin-right: 20px;">서울특별시 관악구 관악로1</div>
     <div style="font-size: 1rem; display: block; margin-left: 20px; margin-right: 20px;">서울대학교 내 65동 교수회관</div>
+    <div style="font-size: 0.8rem; display: block; margin-left: 20px; margin-right: 20px;">(낙성대 근처 호암교수회관이 아닙니다)</div>
     <div class="callbutton" style=" position: absolute; top:0; right: 20px;" onclick="toCall('2-3285-2116')"><i class="fa fa-phone" style="font-size:30px"></i></div>
     <div style="height: 10px;"></div>
     <div id="map"></div>
 
+   </div>
+   <br/>
+   <div style="margin: auto; display: block; max-width: 600px;">
+    <div style="display: flex; margin-left: 20px; margin-right: 20px; justify-content: space-around;">
+      <div class="map_logo_container">
+        <img src="img/tmap.svg" class="map_logo"/>
+        <div class="map_label">티맵</div>
+      </div>
+      <div class="map_logo_container">
+        <img src="img/kakaonav.svg" class="map_logo"/>
+        <div class="map_label">카카오내비</div>
+      </div>
+      <div class="map_logo_container">
+        <img src="img/navermap.webp" class="map_logo" onclick="toURL('https://naver.me/F6mboNxh')"/>
+        <div class="map_label">네이버지도</div>
+      </div>
+      <div class="map_logo_container">
+        <img src="img/kakaomap.svg" class="map_logo" onClick="toURL('https://kko.to/Xc2Rvm-d-y')"/>
+        <div class="map_label">카카오맵</div>
+      </div>
+      
+    </div>
+    
    </div>
 
    
@@ -463,6 +509,22 @@
       marker.setMap(map);
       map.panBy(1, 1);
       map.panBy(-1, -1);
+    }
+
+    function naverMap(){
+      // if the page is loaded on mobile, open the naver map app
+      // else, open the naver map website
+      if (navigator.userAgent.match(/Android/i)) {
+        window.location.href = 'https://naver.me/F6mboNxh';
+      } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+        window.location.href = 'https://naver.me/F6mboNxh';
+      } else {
+        window.location.href = 'https://naver.me/F6mboNxh';
+      }
+    }
+
+    function toURL(url){
+      window.location.href = url;
     }
   </script>
 </body>
