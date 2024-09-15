@@ -514,10 +514,9 @@
     function naverMap(){
       // if the page is loaded on mobile, open the naver map app
       // else, open the naver map website
-      if (navigator.userAgent.match(/Android/i)) {
-        window.location.href = 'https://naver.me/F6mboNxh';
-      } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        window.location.href = 'https://naver.me/F6mboNxh';
+      if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+        window.location.href = 'nmap://place?lat=37.4579&lng=126.953898&name=서울대학교 교수회관&appname=http://gwjy250323.one/;
+
       } else {
         window.location.href = 'https://naver.me/F6mboNxh';
       }
