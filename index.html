@@ -240,7 +240,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-.accountinfo div span:active::after{
+.accountinfo div span:active::after, .accountinfo div span:hover::after{
   background-color: #16b1d0;
 }
 .accountinfo div span::after{
@@ -253,6 +253,12 @@
   left: 0;
   bottom: -8%;
   z-index: -1;
+}
+
+.accountinfo div span span{
+  visibility: hidden;
+  font-size: 0.5rem;
+  margin-left: 5px;
 }
 
 .calendar-top{
@@ -529,15 +535,15 @@
    <div id="accountinfo-j" class="accountinfo" style="height: 0px">
     <div>
       <div>
-        신랑 정준영 신한 <span onclick="copyToClipboard(this)">110-320-554998</span>
+        신랑 정준영 신한 <span onclick="copyToClipboard(this)">110<span>|</span>320<span>|</span>554998</span>
       </div>
       <div style="height: 5px"></div>
       <div>
-        부 정진태 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+        부 정진태 신한 <span onclick="copyToClipboard(this)">XXX<span>|</span>XXX<span>|</span>XXXXXX</span>
       </div>
       <div style="height: 5px"></div>
       <div>
-        모 강진아 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+        모 강진아 신한 <span onclick="copyToClipboard(this)">XXX<span>|</span>XXX<span>|</span>XXXXXX</span>
       </div>
     </div>
     
@@ -545,15 +551,15 @@
    <div id="accountinfo-g" class="accountinfo" style="height: 0px">
     <div>
       <div>
-        신부 김가우 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+        신부 김가우 신한 <span onclick="copyToClipboard(this)">XXX<span>|</span>XXX<span>|</span>XXXXXX</span>
       </div>
       <div style="height: 5px"></div>
       <div>
-        부 김상훈 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+        부 김상훈 신한 <span onclick="copyToClipboard(this)">XXX<span>|</span>XXX<span>|</span>XXXXXX</span>
       </div>
       <div style="height: 5px"></div>
       <div>
-        모 김지희 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+        모 김지희 신한 <span onclick="copyToClipboard(this)">XXX<span>|</span>XXX<span>|</span>XXXXXX</span>
       </div>
     </div>
     
@@ -693,6 +699,7 @@
     function copyToClipboard(_this){
       console.log(_this);
       var text = _this.innerHTML;
+      text = text.replaceAll("<span>|</span>", '-');
       navigator.clipboard.writeText(text);
       var toast = document.getElementById('copytoast');
       toast.style.opacity = '1';
