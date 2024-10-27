@@ -32,6 +32,9 @@
       overflow-x: hidden;
       width: 100%;
       user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
     }
     div {
       display: flex;
@@ -64,6 +67,9 @@
       border: none;
       background-color: transparent;
       user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
     }
     .header-background{
       position: absolute;
@@ -178,6 +184,75 @@
   width: 30px;
   height: 30px;
   user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.accountbutton{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #7ac5d6aa;
+  color: white;
+  margin: 10px 20px;
+  height: 30px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  font-family: 'TheJamsil5Regular';
+  max-width: 600px;
+}
+
+.accountinfo{
+  font-family: 'TheJamsil5Regular';
+  font-size: 1rem;
+  margin: auto;
+  text-align: center;
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  display: block;
+  max-width: 600px;
+}
+.accountinfo > div {
+  margin: 0px 20px;
+  display: block;
+  border-radius: 20px;
+  background-color: #ffffff70;
+  padding: 10px;
+}
+.accountinfo div{
+  font-family: 'TheJamsil5Regular';
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.accountinfo div span{
+  position: relative;
+  font-family: 'TheJamsil5Regular';
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.accountinfo div span:active::after{
+  background-color: #16b1d0;
+}
+.accountinfo div span::after{
+  content: '';
+  background-color: #7ac5d6;
+  height: 12px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -8%;
+  z-index: -1;
 }
 
 .calendar-top{
@@ -190,6 +265,9 @@
   padding-top: 15px;
   display: flex;
   user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .calendar-body{
@@ -199,6 +277,9 @@
   border: none;
   background-color: #2691b470;
   user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .calendar-body td{
@@ -256,6 +337,19 @@
   font-size: 0.8rem;
   width: 100%;
   font-family: 'TheJamsil5Regular';
+}
+
+#copytoast{
+  font-family: 'TheJamsil5Regular';
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #327f90ff;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
   </style>
@@ -402,7 +496,6 @@
     <div class="callbutton" style=" position: absolute; top:0; right: 20px;" onclick="toCall('2-3285-2116')"><i class="fa fa-phone" style="font-size:30px"></i></div>
     <div style="height: 10px;"></div>
     <div id="map"></div>
-
    </div>
    <br/>
    <div style="margin: auto; display: block; max-width: 600px;">
@@ -424,10 +517,50 @@
         <img src="img/kakaomap.svg" class="map_logo" onClick="toURL('https://kko.to/Xc2Rvm-d-y')"/>
         <div class="map_label">카카오맵</div>
       </div>
-      
+    </div>
+   </div>
+   <br/>
+   <br/>
+   <div style="font-size: 1.2rem;">축하의 마음으로 축의금을 보내시려면...</div>
+   <div style="margin: auto">
+    <div class="accountbutton" onclick="openAccount('j')">신랑 측 계좌번호</div>
+    <div class="accountbutton" onclick="openAccount('g')">신부 측 계좌번호</div>
+   </div>
+   <div id="accountinfo-j" class="accountinfo" style="height: 0px">
+    <div>
+      <div>
+        신랑 정준영 신한 <span onclick="copyToClipboard(this)">110-320-554998</span>
+      </div>
+      <div style="height: 5px"></div>
+      <div>
+        부 정진태 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+      </div>
+      <div style="height: 5px"></div>
+      <div>
+        모 강진아 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+      </div>
     </div>
     
    </div>
+   <div id="accountinfo-g" class="accountinfo" style="height: 0px">
+    <div>
+      <div>
+        신부 김가우 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+      </div>
+      <div style="height: 5px"></div>
+      <div>
+        부 김상훈 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+      </div>
+      <div style="height: 5px"></div>
+      <div>
+        모 김지희 신한 <span onclick="copyToClipboard(this)">XXX-XXX-XXXXXX</span>
+      </div>
+    </div>
+    
+   </div>
+
+   <div id="copytoast">복사되었습니다!</div>
+   
 
    
   
@@ -534,6 +667,42 @@
 
     function toURL(url){
       window.location.href = url;
+    }
+
+    function openAccount(target){
+      var account = document.querySelector('#accountinfo-'+target);
+      var counterpart = document.querySelector('#accountinfo-'+(target=='j'?'g':'j'));
+      if(account.style.height == '0px'){
+        if(counterpart.style.height != '0px'){
+          counterpart.style.height = '0px';
+          setTimeout(function(){
+            if(counterpart.style.height == '0px'){
+              account.style.height = '90px';
+            }
+          }, 500);
+        }else{
+          account.style.height = '90px';
+        }
+      }else{
+        account.style.height = '0px';
+      }
+
+    }
+
+    var toasttimeout
+    function copyToClipboard(_this){
+      console.log(_this);
+      var text = _this.innerHTML;
+      navigator.clipboard.writeText(text);
+      var toast = document.getElementById('copytoast');
+      toast.style.opacity = '1';
+      if (toasttimeout){
+        clearTimeout(toasttimeout);
+      }
+      toasttimeout = setTimeout(function(){
+        toast.style.opacity = '0';
+      }, 750);
+
     }
   </script>
 </body>
