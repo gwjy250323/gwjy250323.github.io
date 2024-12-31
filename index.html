@@ -363,6 +363,22 @@
   transition: opacity 0.5s;
 }
 
+#photo{
+  margin: 10px;
+}
+
+#photo td{
+  padding: 0 10px 8px 0;
+}
+/* last td in photo */
+#photo td:last-child{
+  padding: 0 0 8px 0;
+}
+#photo img{
+  width: 100%;
+  object-fit: cover;
+}
+
   </style>
 </head>
 <body onScroll="scrollAdjust()">
@@ -380,7 +396,7 @@
     <div id="namediv"></div>
   </div>
   <div class="main_img" >
-    <img src="/img/temp_main.JPG" style="width: 100%; height: auto; max-width: 600px;">
+    <img src="/img/wed/0.JPG" style="width: 100%; height: auto; max-width: 600px;">
   </div>
 
   <div style="height: 20px;"></div>
@@ -410,6 +426,30 @@
   <div style="display: block;">
     <div>정진태 · 강진아의 장남 준영</div>
     <div>김상훈 · 김지희의 장녀 가우</div>
+  </div>
+  <br/>
+
+  <!-- 3 x 3 photo cells-->
+  <div id="photo" style="display: block;" >
+    <table>
+      <tbody>
+        <tr>
+          <td><img src="/img/wed/cell_1.JPG"></td>
+          <td><img src="/img/wed/cell_2.JPG"></td>
+          <td><img src="/img/wed/cell_3.JPG"></td>
+        </tr>
+        <tr>
+          <td><img src="/img/wed/cell_4.JPG"></td>
+          <td><img src="/img/wed/cell_5.JPG"></td>
+          <td><img src="/img/wed/cell_6.JPG"></td>
+        </tr>
+        <tr>
+          <td><img src="/img/wed/cell_7.JPG"></td>
+          <td><img src="/img/wed/cell_8.JPG"></td>
+          <td><img src="/img/wed/cell_9.JPG"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <br/>
 
@@ -566,6 +606,8 @@
   
 
   <script>
+
+
     // with half of chance, 
     // change the name to '정준영 김가우' or '김가우 정준영'
     function nameInit(){
