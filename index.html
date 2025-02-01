@@ -848,8 +848,15 @@
       x.style.color = 'white';
       x.style.fontSize = '2rem';
       x.style.cursor = 'pointer';
+      x.style.userSelect = 'none';
+      x.style.webkitUserSelect = 'none';
+      x.style.msUserSelect = 'none';
+      x.style.mozUserSelect = 'none';
       
       photo.appendChild(x);
+      photo.onwheel = function(e){
+        e.preventDefault();
+      }
       img.src = e.target.src;
       photo.onclick = function(){
         photo.style.opacity = '0';
