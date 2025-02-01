@@ -869,10 +869,11 @@
       photo.addEventListener('touchstart', function(e){
         // break if more than one finger is used
         console.log(e.touches.length);
+        e.preventDefault();
         if(e.touches.length > 1){
           return;
         }
-        e.preventDefault();
+        
         startX = e.touches[0].clientX;
         photo.ontouchmove = function(e){
           // break if more than one finger is used
