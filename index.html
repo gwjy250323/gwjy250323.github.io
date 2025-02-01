@@ -840,6 +840,16 @@
       
 
       var img = document.createElement('img');
+      var x = document.createElement('div');
+      x.innerHTML = 'X';
+      x.style.position = 'absolute';
+      x.style.top = '10px';
+      x.style.right = '20px';
+      x.style.color = 'white';
+      x.style.fontSize = '2rem';
+      x.style.cursor = 'pointer';
+      
+      photo.appendChild(x);
       img.src = e.target.src;
       photo.onclick = function(){
         photo.style.opacity = '0';
@@ -847,6 +857,50 @@
           photo.remove();
         }, 500);
       }
+
+      // move to the next photo when slide left or right
+      var startX = 0;
+      var endX = 0;
+      img.addEventListener('touchstart', function(e){
+        startX = e.touches[0].clientX;
+      });
+      img.addEventListener('touchend', function(e){
+        endX = e.changedTouches[0].clientX;
+        var curID = e.target.src.split('/').pop().split('.')[0];
+        if(endX - startX > 50){
+          // slide right
+          
+          console.log(prevID);
+          var prevID = parseInt(curID.split('_')[1]) - 1;
+          if(curID.includes('cell2')){
+            if(prevID <0){
+              prevID = 14;
+            }
+          }else{
+            if(prevID <1){
+              prevID = 16;
+            }
+          }
+          prevID = curID.split('_')[0] + '_' + prevID;
+          e.target.src = e.target.src.replace(curID, prevID);
+        }else if(endX - startX < -50){
+          // slide left
+          var nextID = parseInt(curID.split('_')[1]) + 1;
+          if(curID.includes('cell2')){
+            if(nextID > 14){
+              nextID = 0;
+            }
+          }else{
+            if(nextID > 16){
+              nextID = 1;
+            }
+          }
+          nextID = curID.split('_')[0] + '_' + nextID;
+          e.target.src = e.target.src.replace(curID, nextID);
+        }
+      });
+
+
       photo.appendChild(img);
       // add appearing animation to photo css
       photo.style.opacity = '0';
