@@ -859,6 +859,7 @@
       }
       img.src = e.target.src;
       photo.onclick = function(){
+        console.log('clicked');
         photo.style.opacity = '0';
         setTimeout(function(){
           photo.remove();
@@ -870,10 +871,11 @@
       var endX = 0;
       photo.addEventListener('touchstart', function(e){
         // break if more than one finger is used
+        console.log(e.touches.length);
         if(e.touches.length > 1){
           return;
         }
-        e.preventDefault();
+        // e.preventDefault();
         startX = e.touches[0].clientX;
         photo.ontouchend = function(e){
           // break if more than one finger is used
@@ -918,9 +920,13 @@
             nextID = curID.split('_')[0] + '_' + nextID;
             imgElement.src = imgElement.src.replace(curID, nextID);
           }
-          // reset img position
+          if(Math.abs(endX - startX) > 50){
+            // reset img position
+            console.log('ehe?')
+            photo.ontouchend = null;
+          }
           img.style.left = '0px';
-          photo.ontouchend = null;
+          
         }
       });
       
@@ -935,7 +941,7 @@
         if(e.touches.length != 2){
           return;
         }
-        e.stopPropagation();
+        // e.stopPropagation();
         // e.preventDefault();
         var touch1 = e.touches[0];
         var touch2 = e.touches[1];
