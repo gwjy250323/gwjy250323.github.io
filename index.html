@@ -868,69 +868,75 @@
       // move to the next photo when slide left or right
       var startX = 0;
       var endX = 0;
-      img.addEventListener('touchstart', function(e){
+      photo.addEventListener('touchstart', function(e){
         // break if more than one finger is used
         if(e.touches.length > 1){
           return;
         }
         e.preventDefault();
         startX = e.touches[0].clientX;
-      });
-      img.addEventListener('touchend', function(e){
-        // break if more than one finger is used
-        if(e.touches.length > 1){
-          return;
-        }
-        endX = e.changedTouches[0].clientX;
-        var curID = e.target.src.split('/').pop().split('.')[0];
-        if(endX - startX > 50){
-          // slide right
+        photo.ontouchend = function(e){
+          // break if more than one finger is used
+          if(e.touches.length > 1){
+            return;
+          }
           
-          console.log(prevID);
-          var prevID = parseInt(curID.split('_')[1]) - 1;
-          if(curID.includes('cell2')){
-            if(prevID <0){
-              prevID = 14;
-            }
-          }else{
-            if(prevID <1){
-              prevID = 16;
-            }
+          endX = e.changedTouches[0].clientX;
+          var imgElement = document.getElementsByClassName('enlarged-photo')?.[0]?.getElementsByTagName('img')?.[0];
+          if(!imgElement){
+            return;
           }
-          prevID = curID.split('_')[0] + '_' + prevID;
-          e.target.src = e.target.src.replace(curID, prevID);
-        }else if(endX - startX < -50){
-          // slide left
-          var nextID = parseInt(curID.split('_')[1]) + 1;
-          if(curID.includes('cell2')){
-            if(nextID > 14){
-              nextID = 0;
+          var curID = imgElement.src.split('/').pop().split('.')[0];
+          if(endX - startX > 50){
+            // slide right
+            
+            console.log(prevID);
+            var prevID = parseInt(curID.split('_')[1]) - 1;
+            if(curID.includes('cell2')){
+              if(prevID <0){
+                prevID = 14;
+              }
+            }else{
+              if(prevID <1){
+                prevID = 16;
+              }
             }
-          }else{
-            if(nextID > 16){
-              nextID = 1;
+            prevID = curID.split('_')[0] + '_' + prevID;
+            imgElement.src = imgElement.src.replace(curID, prevID);
+          }else if(endX - startX < -50){
+            // slide left
+            var nextID = parseInt(curID.split('_')[1]) + 1;
+            if(curID.includes('cell2')){
+              if(nextID > 14){
+                nextID = 0;
+              }
+            }else{
+              if(nextID > 16){
+                nextID = 1;
+              }
             }
+            nextID = curID.split('_')[0] + '_' + nextID;
+            imgElement.src = imgElement.src.replace(curID, nextID);
           }
-          nextID = curID.split('_')[0] + '_' + nextID;
-          e.target.src = e.target.src.replace(curID, nextID);
+          // reset img position
+          img.style.left = '0px';
+          photo.ontouchend = null;
         }
       });
+      
 
       // make the img pinch zoomable
       img.style.maxWidth = '100%';
       img.style.maxHeight = '100%';
       img.style.objectFit = 'contain';
-      img.style.userSelect = 'none';
-      img.style.webkitUserSelect = 'none';
-      img.style.msUserSelect = 'none';
-      img.style.mozUserSelect = 'none';
 
       img.ontouchstart = function(e){
         // break is two fingers are not used
         if(e.touches.length != 2){
           return;
         }
-        e.preventDefault();
+        e.stopPropagation();
+        // e.preventDefault();
         var touch1 = e.touches[0];
         var touch2 = e.touches[1];
         var startDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
@@ -942,8 +948,7 @@
           var touch2 = e.touches[1];
           var endDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
           var scale = endDistance / startDistance;
-          img.style.width = startWidth * scale + 'px';
-          img.style.height = startHeight * scale + 'px';
+
         }
         img.ontouchend = function(e){
           img.ontouchmove = null;
