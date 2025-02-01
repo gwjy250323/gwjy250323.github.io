@@ -836,6 +836,8 @@
 
     function enlargePhoto(e){
       // add a new div to show the photo in full screen
+
+      window.location.hash = 'photo';
       var photo = document.createElement('div');
       photo.className = 'enlarged-photo';
       
@@ -867,17 +869,16 @@
       photo.addEventListener('touchstart', function(e){
         // break if more than one finger is used
         console.log(e.touches.length);
-        e.preventDefault();
         if(e.touches.length > 1){
           return;
         }
-        
+        e.preventDefault();
         startX = e.touches[0].clientX;
         photo.ontouchmove = function(e){
           // break if more than one finger is used
-          // if(e.touches.length > 1){
-          //   return;
-          // }
+          if(e.touches.length > 1){
+            return;
+          }
           e.preventDefault();
           var img = photo.getElementsByTagName('img')[0];
           var imgWidth = img.offsetWidth;
@@ -946,35 +947,19 @@
           
         }
       });
-    
 
-      img.ontouchstart = function(e){
-        // break is two fingers are not used
-        if(e.touches.length != 2){
-          return;
-        }
-        // e.stopPropagation();
-        // e.preventDefault();
-        var touch1 = e.touches[0];
-        var touch2 = e.touches[1];
-        var startDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
-        var startWidth = img.offsetWidth;
-        var startHeight = img.offsetHeight;
-        img.ontouchmove = function(e){
-          e.preventDefault();
-          var touch1 = e.touches[0];
-          var touch2 = e.touches[1];
-          var endDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
-          var scale = endDistance / startDistance;
-          img.style.width = startWidth * scale + 'px';
-
-        }
-        img.ontouchend = function(e){
-          img.ontouchmove = null;
-          img.ontouchend = null;
+      // when back on the browser, remove photo
+      window.onhashchange = function(){
+        if(window.location.hash != '#photo'){
+          photo.style.opacity = '0';
+          setTimeout(function(){
+            photo.remove();
+          }, 500);
         }
       }
+    
 
+      
       
 
       photo.appendChild(img);
