@@ -888,7 +888,8 @@
 
         photo.ontouchend = function(e){
           // break if more than one finger is used
-          if(e.touches.length > 1){
+          console.log('end', e.touches.length)
+          if(e.touches.length > 0){
             return;
           }
           
