@@ -937,13 +937,18 @@
             // reset img position
             console.log('ehe?')
             photo.ontouchend = null;
+
+            // wait for the image to be loaded
+            imgElement.onload = function(){
+              imgElement.style.left = '20px';
+            }
           }else{
             photo.style.opacity = '0';
             setTimeout(function(){
               photo.remove();
             }, 500);
           }
-          img.style.left = '20px';
+          
           
         }
       });
