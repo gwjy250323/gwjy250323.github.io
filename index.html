@@ -869,10 +869,18 @@
       var startX = 0;
       var endX = 0;
       img.addEventListener('touchstart', function(e){
+        // break if more than one finger is used
+        if(e.touches.length > 1){
+          return;
+        }
         e.preventDefault();
         startX = e.touches[0].clientX;
       });
       img.addEventListener('touchend', function(e){
+        // break if more than one finger is used
+        if(e.touches.length > 1){
+          return;
+        }
         endX = e.changedTouches[0].clientX;
         var curID = e.target.src.split('/').pop().split('.')[0];
         if(endX - startX > 50){
@@ -908,6 +916,42 @@
         }
       });
 
+      // make the img pinch zoomable
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '100%';
+      img.style.objectFit = 'contain';
+      img.style.userSelect = 'none';
+      img.style.webkitUserSelect = 'none';
+      img.style.msUserSelect = 'none';
+      img.style.mozUserSelect = 'none';
+
+      img.ontouchstart = function(e){
+        // break is two fingers are not used
+        if(e.touches.length != 2){
+          return;
+        }
+        e.preventDefault();
+        var touch1 = e.touches[0];
+        var touch2 = e.touches[1];
+        var startDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
+        var startWidth = img.offsetWidth;
+        var startHeight = img.offsetHeight;
+        img.ontouchmove = function(e){
+          e.preventDefault();
+          var touch1 = e.touches[0];
+          var touch2 = e.touches[1];
+          var endDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
+          var scale = endDistance / startDistance;
+          img.style.width = startWidth * scale + 'px';
+          img.style.height = startHeight * scale + 'px';
+        }
+        img.ontouchend = function(e){
+          img.ontouchmove = null;
+          img.ontouchend = null;
+        }
+      }
+
+      
 
       photo.appendChild(img);
       // add appearing animation to photo css
