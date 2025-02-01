@@ -867,16 +867,17 @@
       photo.addEventListener('touchstart', function(e){
         // break if more than one finger is used
         console.log(e.touches.length);
+        e.preventDefault();
         if(e.touches.length > 1){
           return;
         }
-        e.preventDefault();
+        
         startX = e.touches[0].clientX;
         photo.ontouchmove = function(e){
           // break if more than one finger is used
-          if(e.touches.length > 1){
-            return;
-          }
+          // if(e.touches.length > 1){
+          //   return;
+          // }
           e.preventDefault();
           var img = photo.getElementsByTagName('img')[0];
           var imgWidth = img.offsetWidth;
@@ -965,6 +966,7 @@
           var touch2 = e.touches[1];
           var endDistance = Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2));
           var scale = endDistance / startDistance;
+          img.style.width = startWidth * scale + 'px';
 
         }
         img.ontouchend = function(e){
