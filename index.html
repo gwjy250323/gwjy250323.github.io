@@ -869,6 +869,7 @@
       var startX = 0;
       var endX = 0;
       img.addEventListener('touchstart', function(e){
+        e.preventDefault();
         startX = e.touches[0].clientX;
       });
       img.addEventListener('touchend', function(e){
