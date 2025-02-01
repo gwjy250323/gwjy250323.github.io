@@ -395,7 +395,9 @@
 }
 
 .enlarged-photo img{
-  max-width: 100%;
+  position: absolute;
+  max-width: calc(100% - 40px);
+  left: 20px;
   max-height: 100%;
   object-fit: contain;
   user-select: none;
@@ -858,13 +860,6 @@
         e.preventDefault();
       }
       img.src = e.target.src;
-      photo.onclick = function(){
-        console.log('clicked');
-        photo.style.opacity = '0';
-        setTimeout(function(){
-          photo.remove();
-        }, 500);
-      }
 
       // move to the next photo when slide left or right
       var startX = 0;
@@ -875,8 +870,22 @@
         if(e.touches.length > 1){
           return;
         }
-        // e.preventDefault();
+        e.preventDefault();
         startX = e.touches[0].clientX;
+        photo.ontouchmove = function(e){
+          // break if more than one finger is used
+          if(e.touches.length > 1){
+            return;
+          }
+          e.preventDefault();
+          var img = photo.getElementsByTagName('img')[0];
+          var imgWidth = img.offsetWidth;
+          var imgHeight = img.offsetHeight;
+          var touch = e.touches[0];
+          var moveX = touch.clientX - startX;
+          img.style.left = moveX + 'px';
+        }
+
         photo.ontouchend = function(e){
           // break if more than one finger is used
           if(e.touches.length > 1){
@@ -888,6 +897,7 @@
           if(!imgElement){
             return;
           }
+          console.log(startX, endX);
           var curID = imgElement.src.split('/').pop().split('.')[0];
           if(endX - startX > 50){
             // slide right
@@ -924,17 +934,17 @@
             // reset img position
             console.log('ehe?')
             photo.ontouchend = null;
+          }else{
+            photo.style.opacity = '0';
+            setTimeout(function(){
+              photo.remove();
+            }, 500);
           }
-          img.style.left = '0px';
+          img.style.left = '20px';
           
         }
       });
-      
-
-      // make the img pinch zoomable
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '100%';
-      img.style.objectFit = 'contain';
+    
 
       img.ontouchstart = function(e){
         // break is two fingers are not used
